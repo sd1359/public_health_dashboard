@@ -20,15 +20,13 @@ here::here()
 
 ```{r}
 #Reading in the cleaned data
-cbd_admissions <- read_csv(here("r_dashboard/clean_data/cerebrovascular_disease_admissions.csv"))
-respiratory_admissions <- read_csv(here("r_dashboard/clean_data/respiratory_disease_hospital_admissions.csv"))
-chd_admissions <- read_csv(here("r_dashboard/clean_data/coronary_heart_disease_admissions.csv"))
-ddd_admissions <- read_csv(here("r_dashboard/clean_data/disease_digestive_system_admissions.csv"))
-cancer_admissions <- read_csv(here("r_dashboard/clean_data/cancer_admissions.csv"))
-<<<<<<< HEAD
-longterm_conditions_all <- read_csv(here("r_dashboard/clean_data/longterm_conditions_all.csv"))
-=======
->>>>>>> main
+cbd_admissions <- read_csv(here("clean_data/cerebrovascular_disease_admissions.csv"))
+respiratory_admissions <- read_csv(here("clean_data/respiratory_disease_hospital_admissions.csv"))
+chd_admissions <- read_csv(here("clean_data/coronary_heart_disease_admissions.csv"))
+ddd_admissions <- read_csv(here("clean_data/disease_digestive_system_admissions.csv"))
+cancer_admissions <- read_csv(here("clean_data/cancer_admissions.csv"))
+longterm_conditions_all <- read_csv(here("clean_data/longterm_conditions_all.csv"))
+
 ```
 
 ```{r}
@@ -55,7 +53,12 @@ cbd_admissions %>%
   #filtering to show total for Scotland
   filter(reference_area == "Scotland") %>% 
   ggplot() +
-  geom_line(aes(x = year, y = admissions_count, group = reference_area))
+  geom_line(aes(x = year, y = admissions_count, group = reference_area)) +
+  scale_x_continuous(breaks = c(2002:2012)) +
+  labs(title = "Cerebrovascular Disease Hospital Admissions",
+       subtitle = "2002 - 2012",
+       x = "Year",
+       y = "Admissions Count")
 ```
 
 
@@ -83,7 +86,12 @@ respiratory_admissions %>%
   #filtering to show total for Scotland
   filter(reference_area == "Scotland") %>% 
   ggplot() +
-  geom_line(aes(x = year, y = admissions_count, group = reference_area))
+  geom_line(aes(x = year, y = admissions_count, group = reference_area))  +
+  scale_x_continuous(breaks = c(2002:2012)) +
+  labs(title = "Respiratory Disease Hospital Admissions",
+       subtitle = "2002 - 2012",
+       x = "Year",
+       y = "Admissions Count")
 ```
 
 
@@ -111,7 +119,12 @@ chd_admissions %>%
   #filtering to show total for Scotland
   filter(reference_area == "Scotland") %>% 
   ggplot() +
-  geom_line(aes(x = year, y = admissions_count, group = reference_area))
+  geom_line(aes(x = year, y = admissions_count, group = reference_area))  +
+  scale_x_continuous(breaks = c(2002:2012)) +
+  labs(title = "Coronary Heart Disease Hospital Admissions",
+       subtitle = "2002 - 2012",
+       x = "Year",
+       y = "Admissions Count")
 ```
 
 
@@ -119,11 +132,7 @@ chd_admissions %>%
 #Checking for missing values across all columns
 ddd_admissions %>% 
   summarise(across(.fns = ~sum(is.na(.x))))
-<<<<<<< HEAD
 #2573 missing admission numbers
-=======
-#2477 missing admission numbers
->>>>>>> main
 ```
 
 ```{r}
@@ -143,7 +152,12 @@ ddd_admissions %>%
   #filtering to show total for Scotland
   filter(reference_area == "Scotland") %>% 
   ggplot() +
-  geom_line(aes(x = year, y = admissions_count, group = reference_area))
+  geom_line(aes(x = year, y = admissions_count, group = reference_area))  +
+  scale_x_continuous(breaks = c(2002:2012)) +
+  labs(title = "Disease of the Digestive System Hospital Admissions",
+       subtitle = "2002 - 2012",
+       x = "Year",
+       y = "Admissions Count")
 ```
 
 ```{r}
@@ -169,7 +183,12 @@ cancer_admissions %>%
   #filtering to show total for Scotland
   filter(reference_area == "Scotland") %>% 
   ggplot() +
-  geom_line(aes(x = year, y = admissions_count, group = reference_area))
+  geom_line(aes(x = year, y = admissions_count, group = reference_area))  +
+  scale_x_continuous(breaks = c(2002:2012)) +
+  labs(title = "Cancer Hospital Admissions",
+       subtitle = "2002 - 2012",
+       x = "Year",
+       y = "Admissions Count")
 ```
 ```{r}
 #Filtering datasets to show total for Scotland as a whole over the years and combining all datasets
@@ -199,15 +218,6 @@ respiratory_admissions_scotland <- read_csv("/users/user/group_health_project/ho
 
 #longterm_conditions_all <- bind_rows(cancer_admissions_scotland, cbd_admissions_scotland, chd_admissions_scotland, ddd_admissions_scotland, respiratory_admissions_scotland)
 ```
-
-<<<<<<< HEAD
-=======
-```{r}
-#Reading in the longterm_conditions dataset
-longterm_conditions_all <- read_csv(here("r_dashboard/clean_data/longterm_conditions_all.csv"))
-```
-
->>>>>>> main
 
 ```{r}
 #Creating a plot of all the hospital admissions
