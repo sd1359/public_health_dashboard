@@ -21,7 +21,7 @@ here::here()
 
 ```{r}
 #Reading in the cleaned data
-general_health <- read_csv(here("clean_data/general_health.csv"))
+general_health <- read_csv(here("/Users/user/public_health_dashboard_project/public_health_dashboard/r_dashboard/clean_data/general_health.csv"))
 ```
 
 ```{r}
